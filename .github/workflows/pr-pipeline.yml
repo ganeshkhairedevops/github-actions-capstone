@@ -13,6 +13,17 @@ permissions:
   pull-requests: write
 
 jobs:
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Check Dependencies for Vulnerabilities
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: critical
+          
   build-test:
     name: Build & Test (Reusable)
     uses: ./.github/workflows/reusable-build-test.yml
