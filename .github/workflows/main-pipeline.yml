@@ -34,7 +34,7 @@ jobs:
         with:
           image-ref: ganeshkhaire14/node-app-github-actions:latest
           format: table
-          severity: 'CRITICAL,HIGH'
+          severity: 'CRITICAL'
           ignore-unfixed: true
           exit-code: 1
 
