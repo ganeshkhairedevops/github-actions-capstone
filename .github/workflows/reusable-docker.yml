@@ -21,7 +21,7 @@ on:
     outputs:
       image_url:
         description: "Full Docker image URL"
-        value: ${{ jobs.docker.outputs.image }}
+        value: ${{ jobs.docker.outputs.image_url }}
 
 jobs:
   docker:
@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      image: ${{ steps.set-image.outputs.image }}
+      image_url: ${{ steps.set-image-url.outputs.image_url }}
 
     steps:
       - name: Checkout Code
@@ -51,4 +51,4 @@ jobs:
 
       - name: Set Image Output
         id: set-image
-        run: echo "image=${{ inputs.image_name }}:${{ inputs.tag }}" >> $GITHUB_OUTPUT
+        run: echo "image_url=${{ inputs.image_name }}:${{ inputs.tag }}" >> $GITHUB_OUTPUT
