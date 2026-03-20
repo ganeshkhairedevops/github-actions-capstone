@@ -1,0 +1,36 @@
+name: Main Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-test:
+    name: Build & Test
+    uses: ./.github/workflows/reusable-build-test.yml
+    with:
+      node_version: "18"
+      run_tests: true
+
+  docker:
+    name: Docker Build & Push
+    needs: build-test
+    uses: ./.github/workflows/reusable-docker.yml
+    with:
+      image_name: ganeshkhairedevops/node-app-github-actions
+      tag: latest
+    secrets:
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      docker_token: ${{ secrets.DOCKER_TOKEN }}
+
+  deploy:
+    name: Deploy to Production
+    needs: docker
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Deploy image to production
+        run: |
+          echo "Deploying image: ${{ needs.docker.outputs.image_url }} to production"
