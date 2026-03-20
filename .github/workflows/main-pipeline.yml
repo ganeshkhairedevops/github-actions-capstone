@@ -18,7 +18,7 @@ jobs:
     needs: build-test
     uses: ./.github/workflows/reusable-docker.yml
     with:
-      image_name: ganeshkhairedevops/node-app-github-actions
+      image_name: ganeshkhaire14/node-app-github-actions
       tag: latest
     secrets:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
