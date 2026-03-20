@@ -40,6 +40,6 @@ jobs:
         if: always()
         run: |
           echo "## Health Check Report" >> $GITHUB_STEP_SUMMARY
-          echo "- Image: ganeshkhairedevops/node-app-github-actions:latest" >> $GITHUB_STEP_SUMMARY
+          echo "- Image: ganeshkhaire14/node-app-github-actions:latest" >> $GITHUB_STEP_SUMMARY
           echo "- Status: ${{ steps.health.outputs.status }}" >> $GITHUB_STEP_SUMMARY
           echo "- Time: $(date)" >> $GITHUB_STEP_SUMMARY
